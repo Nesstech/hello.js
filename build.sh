@@ -39,6 +39,7 @@ cat hello.polyfill.js \
 	modules/google.js \
 	modules/instagram.js \
 	modules/joinme.js \
+	modules/line.js \
 	modules/linkedin.js \
 	modules/soundcloud.js \
 	modules/spotify.js \
