@@ -4911,7 +4911,6 @@ if (typeof chrome === 'object' && typeof chrome.identity === 'object' && chrome.
 				auth: 'https://access.line.me/oauth2/v2.1/authorize',
 				grant: 'https://api.line.me/oauth2/v2.1/token',
 				response_type: 'code',
-				client_secret: '@{line_client_secret|}',
 				scope: {
 					basic: 'profile%20openid%20email', // https://developers.line.biz/en/docs/line-login/integrate-line-login/#scopes
 				},
@@ -4925,7 +4924,6 @@ if (typeof chrome === 'object' && typeof chrome.identity === 'object' && chrome.
 
 			get: {
 				me: function(p, callback) {
-					p.path = 'https://api.line.me/v2/profile';
 					p.headers = {
 						Authorization: `Bearer ${p.authResponse.access_token}`,
 					};
