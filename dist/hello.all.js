@@ -4927,7 +4927,23 @@ if (typeof chrome === 'object' && typeof chrome.identity === 'object' && chrome.
 					p.headers = {
 						Authorization: `Bearer ${p.authResponse.access_token}`,
 					};
-					callback('https://api.line.me/v2/profile');
+					var form_data = new URLSearchParams;
+					form_data.append('id_token', `${p.authResponse.id_token}`);
+					form_data.append('client_id', `${hello.services[p.network].id}`);
+					fetch('https://api.line.me/oauth2/v2.1/verify',
+						{
+							method: 'POST',
+							headers: {
+								'Content-Type': 'application/x-www-form-urlencoded',
+							},
+							body: form_data
+						}
+					).then(function(res) {
+						return res.json();
+					}).then(function(json) {
+						p.token_data = json;
+						callback('https://api.line.me/v2/profile');
+					});
 				},
 			},
 
@@ -4937,11 +4953,12 @@ if (typeof chrome === 'object' && typeof chrome.identity === 'object' && chrome.
 			},
 
 			wrap: {
-				me: function(o) {
+				me: function(o, h, p) {
 					if (o.userId) {
 						o.picture = o.thumbnail = o.pictureUrl;
 						o.id = o.userId;
 						o.name = o.displayName;
+						o.email = p.token_data.email;
 					}
 
 					return o;
