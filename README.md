@@ -1010,3 +1010,8 @@ python -m SimpleHTTPServer
 # http://localhost:8000/tests/specs/index.html
 ```
 
+### Build js
+
+```
+docker run --rm -it -v "$(pwd):/app" -w "/app" node:16-alpine sh -c "apk add -q bash && npm install && npm update && npm run build"
+```
