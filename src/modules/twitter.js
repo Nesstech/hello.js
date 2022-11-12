@@ -24,7 +24,11 @@
 			base: base + '1.1/',
 
 			get: {
-				me: 'account/verify_credentials.json',
+				me: function(p, callback) {
+					p.query.skip_status = true;
+					p.query.include_email = true;
+					callback('account/verify_credentials.json');
+				},
 				'me/friends': 'friends/list.json?count=@{limit|200}',
 				'me/following': 'friends/list.json?count=@{limit|200}',
 				'me/followers': 'followers/list.json?count=@{limit|200}',
