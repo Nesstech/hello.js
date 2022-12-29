@@ -1,7 +1,7 @@
 (function(hello) {
 	// For APIs, once a version is no longer usable, any calls made to it will be defaulted to the next oldest usable version.
 	// So we explicitly state it.
-	var version = 'v2.9';
+	var version = 'v15.0';
 
 	hello.init({
 
