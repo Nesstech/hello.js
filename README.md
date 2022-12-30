@@ -1013,5 +1013,5 @@ python -m SimpleHTTPServer
 ### Build js
 
 ```
-docker run --rm -it -v "$(pwd):/app" -w "/app" node:16-alpine sh -c "apk add -q bash && npm install && npm update && npm run build"
+docker run --rm -it -v "$(pwd):/app" -w "/app" node:18-alpine sh -c "apk add -q bash && npm install -g npm-check-updates && npm-check-updates -u && npm install && npm update && npm run build"  12-30 08:49:18
 ```
